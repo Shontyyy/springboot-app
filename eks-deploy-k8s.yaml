@@ -3,18 +3,18 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: my-new-pv
+    name: my-pv
 spec:
-  capacity:
-    storage: 10Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Recycle
-  csi:
-    driver: ebs.csi.aws.com
-    volumeHandle: vol-0137cd6e7ac6d6409
-  storageClassName: gp3
+    capacity:
+      storage: 20Gi
+    volumeMode: Filesystem
+    accessModes:
+      - ReadWriteOnce
+    persistentVolumeReclaimPolicy: Recycle
+    csi:
+      driver: ebs.csi.aws.com
+      volumeHandle: vol-0bd9c1aa291b5c67c
+    storageClassName: gp3
 #  awsElasticBlockStore:
 #    volumeID: vol-0f4b1e58837abd1ab
 #  fsType: ext4
@@ -24,15 +24,15 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: my-new-pvc
+    name: my-pvc
 spec:
-  accessModes:
+    accessModes:
     - ReadWriteOnce
-  resources:
-    requests:
-      storage: 2Gi
-  storageClassName: gp3
-  volumeName: ny-new-pv
+    resources:
+      requests:
+        storage: 2Gi
+    storageClassName: gp3
+    volumeName: my-pv
   
 # Deployment 
 ---
