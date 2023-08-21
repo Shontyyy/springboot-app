@@ -59,10 +59,10 @@ spec:
         - containerPort: 8085
           name: http
           protocol: TCP
-    volumes:
-        - name: my-volume
-          persistentVolumeClaim:
-            claimName: my-pvc 
+volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+    claimName: my-pvc 
 
 
 
