@@ -10,8 +10,8 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: gp2
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: gp3
   awsElasticBlockStore:
     volumeID: vol-0dca676e5fc8440fa
     fsType: ext4
@@ -28,7 +28,7 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  storageClassName: gp2
+  storageClassName: gp3
   
 # Deployment 
 ---
