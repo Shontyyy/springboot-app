@@ -14,7 +14,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     volumeHandle: vol-0f4b1e58837abd1ab
-  storageClassName: gp3
+  storageClassName: standard
 #  awsElasticBlockStore:
 #    volumeID: vol-0f4b1e58837abd1ab
     fsType: ext4
