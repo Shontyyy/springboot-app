@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: my-pv
+  name: my-new-pv
 spec:
   capacity:
     storage: 10Gi
@@ -13,7 +13,7 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   csi:
     driver: ebs.csi.aws.com
-    volumeHandle: vol-0f4b1e58837abd1ab
+    volumeHandle: vol-0137cd6e7ac6d6409
   storageClassName: gp3
 #  awsElasticBlockStore:
 #    volumeID: vol-0f4b1e58837abd1ab
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: my-pvc
+  name: my-new-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -32,6 +32,7 @@ spec:
     requests:
       storage: 2Gi
   storageClassName: gp3
+  volumeName: ny-new-pv
   
 # Deployment 
 ---
@@ -54,7 +55,7 @@ spec:
       volumes:
       - name: my-pvc-volume
         persistentVolumeClaim:
-         claimName: my-pvc
+         claimName: my-new-pvc
       containers:
       - name: my-springboot-app
         image: 224779572000.dkr.ecr.ap-south-1.amazonaws.com/repo_4_task:latest
