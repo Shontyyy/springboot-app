@@ -1,3 +1,37 @@
+# PV
+---------------------------------------
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: gp2
+  awsElasticBlockStore:
+    volumeID: vol-0dca676e5fc8440fa
+    fsType: ext4
+
+# PVC
+---------------------------------------------------
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: gp2
+  
+# Deployment 
+--------------------------------------------------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,10 +52,21 @@ spec:
       - name: my-springboot-app
         image: 224779572000.dkr.ecr.ap-south-1.amazonaws.com/repo_4_task:latest
         imagePullPolicy: Always
+        volumeMounts:
+            - name: my-volume
+              mountPath: /new-volume
         ports:
         - containerPort: 8085
           name: http
           protocol: TCP
+    volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: my-pvc 
+
+
+
+          
 # service type loadbalancer       
 ---
 apiVersion: v1
