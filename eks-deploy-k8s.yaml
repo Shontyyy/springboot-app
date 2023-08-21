@@ -58,7 +58,7 @@ spec:
         imagePullPolicy: Always
         volumeMounts:
             - name: my-pvc-volume
-              mountPath: /new-volume
+              mountPath: /my-pvc-volume
         ports:
         - containerPort: 8085
           name: http
